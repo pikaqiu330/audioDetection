@@ -22,7 +22,6 @@ public class AudioApplication {
     private static void createAndShowGUI()
     {
         //创造一个实例
-//        MyRecord6 mr = new MyRecord6();
         AudioDetection detect = new AudioDetection();
     }
 
