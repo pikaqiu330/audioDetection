@@ -1,8 +1,8 @@
 package com.security.audio;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
-
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 
@@ -10,17 +10,14 @@ import javax.ws.rs.Path;
 @Component
 @Path("audio")
 public class AudioRest {
-
-    @Autowired
-    private VoiceLinkJNI voiceLinkJNI;
+    private static final Logger logger = LoggerFactory.getLogger(AudioRest.class);
 
     @POST
     public boolean voiceDetect(String fileName)
     {
-//        System.out.println("filePath:"+file.getAbsolutePath()+",name="+fileName);
-        boolean b_jni = voiceLinkJNI.AnomalyDetectionJNI(fileName);
-        System.out.println(b_jni + fileName);
-        return false;
+        boolean b_jni = DetectionJni.audioDetection(fileName);
+        logger.info("path:"+fileName+"|||||||||||||||||detection result:"+b_jni);
+        return b_jni;
 
     }
 
